@@ -6,10 +6,11 @@ The project is structured as a simple monorepo:
 
 ## 📁 Project Structure
 
+```
 stackproof/
 ├── stackproof-basic # Smart contracts (Hardhat)
 ├── stackproof-dapp # Frontend DApp
-
+```
 
 ## 🔗 stackproof-basic
 Smart contract project built with **Hardhat**.
