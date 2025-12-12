@@ -1,73 +1,93 @@
-# React + TypeScript + Vite
+# StackProof DApp
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A small Web3 demo that lets a user **connect a wallet**, **sign a message**, and generate a **shareable “proof” card** (signature + address + timestamp). 
 
-Currently, two official plugins are available:
+This application provides a clean and minimal interface to interact with the StackProof smart contract deployed on a local or test blockchain network.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## React Compiler
+- Wallet connection via MetaMask
+- Read data from the smart contract
+- Send transactions to the blockchain
+- Responsive and minimal UI
+- Clear separation between UI and Web3 logic
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🧱 Tech Stack
 
-## Expanding the ESLint configuration
+- React
+- Vite
+- Ethers.js
+- Web3 Wallet Integration (MetaMask)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 📦 Project Structure
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+  assets/
+  components/
+    Button.tsx
+    Button.css
+    Card.tsx
+    Card.css
+    Field.tsx
+    Field.css
+  lib/
+    wallet.ts
+    proof.ts
+  styles/
+    index.css
+    app.css
+  App.tsx
+  main.tsx
+  global.d.ts
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚀 Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 1. Install dependencies
+```bash
+npm install
 ```
+
+### 2. Run the development server
+```bash
+npm run dev
+```
+
+The app will be available at:
+```
+http://localhost:5173
+```
+
+## 🔗 Smart Contract Connection
+
+The frontend interacts with the smart contract defined in:
+
+```
+src/contracts/
+```
+
+Make sure the contract is deployed and the correct:
+- ABI
+- Contract address
+- Network
+
+are configured before running the app.
+
+## 🧪 Local Blockchain
+
+For local development, this project is designed to work with:
+- Hardhat local network
+- MetaMask connected to `localhost:8545`
+
+## 🎯 Purpose
+
+This DApp was built as a **portfolio project** to demonstrate:
+- Full-stack Web3 development
+- Frontend ↔ smart contract interaction
+- Clean React architecture
+- Practical Ethereum tooling usage
+
+---
+
+Built by **Laura Moyano**.

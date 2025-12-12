@@ -25,7 +25,7 @@ export function makeNonce(bytes = 16): string {
 }
 
 export function buildMessage(payload: StackProofPayload): string {
-  // Mensaje legible (simple y demostrable)
+  // Mensaje legible
   return [
     "STACKPROOF",
     `app: ${payload.app}`,
