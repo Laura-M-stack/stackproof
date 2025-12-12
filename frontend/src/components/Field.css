@@ -1,0 +1,25 @@
+.sp-field {
+  display: grid;
+  gap: 6px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(2, 6, 23, 0.22);
+}
+
+.sp-field__label {
+  font-size: 0.78rem;
+  color: rgba(226, 232, 240, 0.6);
+}
+
+.sp-field__value {
+  font-size: 0.95rem;
+  color: rgba(226, 232, 240, 0.92);
+  word-break: break-word;
+}
+
+.sp-field__value.is-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  font-size: 0.9rem;
+}

@@ -1,0 +1,194 @@
+/* src/styles.css */
+
+/* Reset muy suave */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: radial-gradient(circle at top, #020617 0, #000 55%, #020617 100%);
+  color: #e5e7eb;
+}
+
+/* Contenedor general */
+.app-root {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1.5rem;
+}
+
+/* “Card” principal */
+.shell {
+  width: 100%;
+  max-width: 420px;
+  padding: 2rem 2rem 1.5rem;
+  border-radius: 20px;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  background:
+    radial-gradient(circle at top left, rgba(248, 113, 181, 0.22), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(56, 189, 248, 0.22), transparent 55%),
+    rgba(15, 23, 42, 0.97);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Header */
+.shell-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.shell-eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #9ca3af;
+}
+
+.shell-title {
+  font-size: 1.9rem;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.shell-subtitle {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #9ca3af;
+}
+
+/* Main */
+.shell-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+/* Botón principal */
+.primary-button {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #020617;
+  background: linear-gradient(
+    135deg,
+    #ff75c1 0%,
+    #b07cff 45%,
+    #5ac8fa 100%
+  );
+  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.9);
+  transition: transform 0.12s ease-out, box-shadow 0.12s ease-out,
+    filter 0.12s ease-out, opacity 0.12s ease-out;
+}
+
+.primary-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 1);
+  filter: brightness(1.03);
+}
+
+.primary-button:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.9);
+}
+
+.primary-button:disabled {
+  opacity: 0.75;
+  cursor: default;
+}
+
+/* Tarjeta de info de la wallet */
+.info-card {
+  margin-top: 0.25rem;
+  padding: 0.9rem 0.95rem;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  background: rgba(15, 23, 42, 0.92);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+
+.info-title {
+  margin: 0 0 0.3rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.info-address {
+  margin: 0 0 0.35rem;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.87rem;
+  color: #f9fafb;
+}
+
+.info-helper {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+/* Mensajes de feedback */
+.feedback {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #e5e7eb;
+}
+
+.feedback-error {
+  color: #fca5a5;
+}
+
+/* Footer */
+.shell-footer {
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  color: #9ca3af;
+}
+
+.footer-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: radial-gradient(circle, #f472b6, #ec4899);
+  box-shadow: 0 0 10px rgba(244, 114, 182, 0.8);
+}
+
+.footer-text {
+  opacity: 0.8;
+}
+
+/* Responsive pequeñito */
+@media (max-width: 480px) {
+  .shell {
+    padding: 1.6rem 1.4rem 1.3rem;
+    border-radius: 18px;
+  }
+
+  .shell-title {
+    font-size: 1.6rem;
+  }
+}
