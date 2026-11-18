@@ -1,13 +1,12 @@
-# Sample Hardhat Project
+# StackProof contracts
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a Hardhat Ignition module that deploys that contract.
+`contracts/StackProof.sol`: each address can submit one proof string, stored as a flag and emitted as a `ProofSubmitted` event. Tests live in `test/StackProof.js`.
 
-Try running some of the following tasks:
+This is a standalone experiment. The deployed frontend does not use it.
 
-```shell
-npx hardhat help
+```bash
+npm install
 npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat ignition deploy ./ignition/modules/Lock.js
+npx hardhat node                                      # local chain
+npx hardhat run scripts/deploy.js --network localhost  # deploy to it
 ```

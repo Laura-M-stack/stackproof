@@ -1,52 +1,37 @@
 # StackProof
 
-StackProof is a full-stack Web3 demo project that showcases the integration between smart contracts and a modern frontend.
+Web3 portfolio project: sign a message with your wallet, get a portable JSON proof, and verify it locally. No gas, no server.
 
-The project is structured as a simple monorepo:
+**Live demo:** https://laura-m-stack.github.io/stackproof/
 
-## 📁 Project Structure
+## What is in this repo
 
 ```
 stackproof/
-├── stackproof-basic # Smart contracts (Hardhat)
-├── stackproof-dapp # Frontend DApp
+├── frontend/   # The live app (React + Vite + TypeScript + viem)
+└── contracts/  # Solidity contract + Hardhat tests (not used by the live app)
 ```
 
-## 🔗 stackproof-basic
-Smart contract project built with **Hardhat**.
+**`frontend/`** is the demo that is deployed. It uses EIP-191 message signing (`personal_sign`) and verifies with viem. It never sends a transaction and does not call any contract.
 
-- Solidity smart contract
-- Local blockchain for development
-- Deployment scripts
+**`contracts/`** holds `StackProof.sol`, a minimal on-chain version of the idea (one proof per address, emitted as an event), with Hardhat tests. It is a separate experiment: the frontend is not wired to it.
 
-**Tech stack**
-- Solidity
-- Hardhat
-- Ethers.js
+## Run it
 
-## 🌐 stackproof-dapp
-Frontend decentralized application that interacts with the smart contract.
+```bash
+cd frontend
+npm install
+npm run dev        # http://localhost:5173/stackproof/
+npm test           # proof generation / verification tests
+npm run typecheck
+```
 
-- Connects to MetaMask
-- Reads contract state
-- Writes transactions to the blockchain
+```bash
+cd contracts
+npm install
+npx hardhat test
+```
 
-**Tech stack**
-- React
-- Vite
-- Ethers.js
-- Web3 wallet integration
+## Built by
 
-## 🚀 Purpose
-This project demonstrates:
-- Full-stack Web3 development
-- Smart contract deployment
-- Frontend ↔ blockchain interaction
-- Clean project structure and developer workflow
-
-## 🧪 Local Development
-Each folder contains its own setup instructions.
-
----
-
-Built by **Laura Moyano**.
+Laura Moyano.

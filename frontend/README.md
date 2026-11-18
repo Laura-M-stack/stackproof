@@ -1,93 +1,42 @@
 # StackProof DApp
 
-A small Web3 demo that lets a user **connect a wallet**, **sign a message**, and generate a **shareable “proof” card** (signature + address + timestamp). 
+Connect a wallet, sign a message, and get a JSON proof that anyone can verify, even without a wallet.
 
-This application provides a clean and minimal interface to interact with the StackProof smart contract deployed on a local or test blockchain network.
+## How it works
 
-## ✨ Features
+1. The app builds a readable message (address, chain ID, timestamp, random nonce) and asks the wallet to sign it with `personal_sign` (EIP-191).
+2. The result is a JSON with `payload`, `message` and `signature`.
+3. Verification checks that the message matches the payload fields exactly (so they cannot be edited) and that the signature belongs to `payload.address` (viem `verifyMessage`).
 
-- Wallet connection via MetaMask
-- Read data from the smart contract
-- Send transactions to the blockchain
-- Responsive and minimal UI
-- Clear separation between UI and Web3 logic
+Everything runs in the browser. Nothing is sent on-chain or to a server. The last proof is kept in `localStorage`.
 
-## 🧱 Tech Stack
+Limits worth knowing: verification covers wallets that sign as an EOA. Smart-contract wallets (ERC-1271) would need an on-chain check.
 
-- React
-- Vite
-- Ethers.js
-- Web3 Wallet Integration (MetaMask)
+## Tech
 
-## 📦 Project Structure
+React 18, Vite, TypeScript (strict), viem, Vitest.
+
+## Structure
 
 ```
 src/
-  assets/
-  components/
-    Button.tsx
-    Button.css
-    Card.tsx
-    Card.css
-    Field.tsx
-    Field.css
+  components/   Button, Card, Field
   lib/
-    wallet.ts
-    proof.ts
-  styles/
-    index.css
-    app.css
+    wallet.ts   injected provider, connection, error messages
+    proof.ts    message building, signing, parsing, verification (+ proof.test.ts)
+  styles/       index.css, app.css
   App.tsx
-  main.tsx
-  global.d.ts
 ```
 
-## 🚀 Getting Started
+## Scripts
 
-### 1. Install dependencies
 ```bash
 npm install
+npm run dev         # local server
+npm test            # unit tests
+npm run typecheck
+npm run build
+npm run deploy      # publishes dist/ to GitHub Pages
 ```
 
-### 2. Run the development server
-```bash
-npm run dev
-```
-
-The app will be available at:
-```
-http://localhost:5173
-```
-
-## 🔗 Smart Contract Connection
-
-The frontend interacts with the smart contract defined in:
-
-```
-src/contracts/
-```
-
-Make sure the contract is deployed and the correct:
-- ABI
-- Contract address
-- Network
-
-are configured before running the app.
-
-## 🧪 Local Blockchain
-
-For local development, this project is designed to work with:
-- Hardhat local network
-- MetaMask connected to `localhost:8545`
-
-## 🎯 Purpose
-
-This DApp was built as a **portfolio project** to demonstrate:
-- Full-stack Web3 development
-- Frontend ↔ smart contract interaction
-- Clean React architecture
-- Practical Ethereum tooling usage
-
----
-
-Built by **Laura Moyano**.
+Built by Laura Moyano.
