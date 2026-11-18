@@ -20,13 +20,16 @@ React 18, Vite, TypeScript (strict), viem, Vitest.
 
 ```
 src/
-  components/   Button, Card, Field
+  components/   Header, Certificate, Demo, Sections (how / tech / FAQ), Button, Card
   lib/
-    wallet.ts   injected provider, connection, error messages
+    wallet.ts   injected provider, connection, network names, error codes
     proof.ts    message building, signing, parsing, verification (+ proof.test.ts)
-  styles/       index.css, app.css
+  i18n.tsx      EN / ES texts and language switch
+  styles/       index.css (tokens), app.css (layout)
   App.tsx
 ```
+
+The page is bilingual (English / Spanish). The language follows the browser the first time and is remembered afterwards.
 
 ## Scripts
 

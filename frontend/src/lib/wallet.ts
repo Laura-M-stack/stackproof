@@ -51,11 +51,27 @@ export function shortenAddress(addr: `0x${string}`): string {
   return `${addr.slice(0, 6)}…${addr.slice(-4)}`;
 }
 
-/** Turns wallet/provider errors into something a person can read. */
-export function walletErrorMessage(e: unknown): string {
+export type WalletErrorCode = "rejected" | "pending" | "other";
+
+export function walletErrorCode(e: unknown): WalletErrorCode {
   const code = typeof e === "object" && e !== null && "code" in e ? (e as { code: unknown }).code : undefined;
-  if (code === 4001) return "You rejected the request in your wallet.";
-  if (code === -32002) return "A request is already pending: open your wallet to continue.";
-  if (e instanceof Error && e.message) return e.message;
-  return "Something went wrong with the wallet. Please try again.";
+  if (code === 4001) return "rejected";
+  if (code === -32002) return "pending";
+  return "other";
+}
+
+const CHAINS: Record<number, string> = {
+  1: "Ethereum",
+  10: "Optimism",
+  56: "BNB Chain",
+  137: "Polygon",
+  8453: "Base",
+  42161: "Arbitrum One",
+  11155111: "Sepolia",
+  31337: "Hardhat local",
+};
+
+export function chainName(chainId: number): string {
+  const name = CHAINS[chainId];
+  return name ? `${name} (${chainId})` : `Chain ${chainId}`;
 }

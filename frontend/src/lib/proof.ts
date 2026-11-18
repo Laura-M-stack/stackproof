@@ -1,4 +1,4 @@
-import { isAddress, verifyMessage } from "viem";
+import { isAddress, toHex, verifyMessage } from "viem";
 import type { EIP1193Provider } from "viem";
 import { request } from "./wallet";
 
@@ -18,7 +18,7 @@ export type StackProof = {
   signature: `0x${string}`;
 };
 
-export type VerifyResult = { ok: true } | { ok: false; reason: string };
+export type VerifyResult = { ok: true } | { ok: false; reason: "mismatch" | "signature" };
 
 export function makeNonce(bytes = 16): string {
   const arr = new Uint8Array(bytes);
@@ -58,7 +58,7 @@ export async function signProof(
 
   const signature = await request<`0x${string}`>(provider, {
     method: "personal_sign",
-    params: [message, address],
+    params: [toHex(message), address],
   });
 
   return { payload, message, signature };
@@ -114,14 +114,14 @@ export function parseProofJson(raw: string): StackProof | null {
  */
 export async function verifyProof(proof: StackProof): Promise<VerifyResult> {
   if (proof.message !== buildMessage(proof.payload)) {
-    return { ok: false, reason: "The message does not match the payload fields." };
+    return { ok: false, reason: "mismatch" };
   }
   const ok = await verifyMessage({
     address: proof.payload.address,
     message: proof.message,
     signature: proof.signature,
   });
-  return ok ? { ok: true } : { ok: false, reason: "The signature does not match the address." };
+  return ok ? { ok: true } : { ok: false, reason: "signature" };
 }
 
 /** Pre-signed with a throwaway key so anyone can try verification without a wallet. */

@@ -5,26 +5,21 @@ type Props = {
   onClick?: () => void;
   disabled?: boolean;
   variant?: "primary" | "ghost";
-  type?: "button" | "submit";
-  ariaLabel?: string;
+  block?: boolean;
+  href?: string;
 };
 
-export default function Button({
-  children,
-  onClick,
-  disabled,
-  variant = "primary",
-  type = "button",
-  ariaLabel,
-}: Props) {
+export default function Button({ children, onClick, disabled, variant = "primary", block, href }: Props) {
+  const cls = `sp-btn sp-btn--${variant}${block ? " sp-btn--block" : ""}`;
+  if (href) {
+    return (
+      <a className={cls} href={href}>
+        {children}
+      </a>
+    );
+  }
   return (
-    <button
-      type={type}
-      className={`sp-btn sp-btn--${variant}`}
-      onClick={onClick}
-      disabled={disabled}
-      aria-label={ariaLabel}
-    >
+    <button type="button" className={cls} onClick={onClick} disabled={disabled}>
       {children}
     </button>
   );
